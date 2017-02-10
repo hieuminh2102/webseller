@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+#  /app/Http/rapyd.php
+Route::controller('rapyd-demo','\Zofe\Rapyd\Demo\DemoController');
