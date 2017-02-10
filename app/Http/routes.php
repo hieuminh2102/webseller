@@ -14,9 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::any('/set-item', 'ManageController@anySetItem');
 Route::auth();
 
+#  /app/Http/rapyd.php
+Route::controller('rapyd-demo','\Zofe\Rapyd\Demo\DemoController');
 Route::get('/home', 'HomeController@index');
 
 #  /app/Http/rapyd.php
