@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class phuong extends Model
+class taskForm extends Model
 {
     //
 }

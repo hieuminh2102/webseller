@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhuongsTable extends Migration
+class CreateGeneralAppreciationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreatePhuongsTable extends Migration
      */
     public function up()
     {
-        Schema::create('phuongs', function (Blueprint $table) {
+        Schema::create('general_appreciations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('point');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreatePhuongsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('phuongs');
+        Schema::drop('general_appreciations');
     }
 }

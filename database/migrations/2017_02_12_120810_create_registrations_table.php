@@ -14,15 +14,18 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studentId');
-            $table->integer('companyId');
+            $table->integer('student_id');
+            $table->foreign('student_id')->references('id')->on('User');
+            $table->integer('company_id');
+            $table->foreign('company_id')->references('id')->on('company');
             $table->integer('season');
+            $table->foreign('season')->references('id')->on('season');
             $table->string('system&network_skill',100);
             $table->string('specialityCertificate',100);
             $table->string('softSkill',100);
             $table->string('otherDescription',100);
             $table->string('wishedSkill',100);
-            $table->boolean('confirm');
+            $table->boolean('is_confirm');
             $table->timestamps();
         });
     }

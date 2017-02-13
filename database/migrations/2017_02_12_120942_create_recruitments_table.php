@@ -14,7 +14,8 @@ class CreateRecruitmentsTable extends Migration
     {
         Schema::create('recruitments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('companyId');
+            $table->integer('company_id');
+            $table->foreign('company_id')->references('id')->on('company');
             $table->integer('quantity');
             $table->integer('season');
             $table->timestamps();

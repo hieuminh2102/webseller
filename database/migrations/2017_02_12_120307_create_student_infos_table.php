@@ -14,14 +14,13 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',30);
+            $table->integer('student_id');
+            $table->foreign('student_id')->references('id')->on('User');
             $table->string('class',10);
-            $table->integer('studentId',10);
-            $table->boolean('isMale');
-            $table->boolean('laptop');
+            $table->boolean('is_male');
+            $table->boolean('have_laptop');
             $table->string('address');
             $table->string('phone',18);
-            $table->string('email');
             $table->timestamps();
         });
     }

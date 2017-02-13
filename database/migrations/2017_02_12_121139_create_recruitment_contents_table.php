@@ -14,7 +14,8 @@ class CreateRecruitmentContentsTable extends Migration
     {
         Schema::create('recruitment_contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('recruitmentId');
+            $table->integer('recruitment_id');
+            $table->foreign('recruitment_id')->references('id')->on('recruitment');
             $table->string('role');
             $table->text('jobDescription');
             $table->text('requirement');

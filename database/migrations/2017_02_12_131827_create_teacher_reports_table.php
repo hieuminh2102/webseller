@@ -14,6 +14,12 @@ class CreateTeacherReportsTable extends Migration
     {
         Schema::create('teacher_reports', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('User');
+            $table->integer('company_id');
+            $table->foreign('student_id')->references('id')->on('User');
+            $table->integer('season');
+            $table->text('advantage_disadvantage_improvement');
             $table->timestamps();
         });
     }

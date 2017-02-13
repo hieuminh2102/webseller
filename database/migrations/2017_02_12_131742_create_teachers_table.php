@@ -13,7 +13,10 @@ class CreateTeachersTable extends Migration
     public function up()
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('No');
+            $table->integer('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('User');
+            $table->string('subject');
             $table->timestamps();
         });
     }

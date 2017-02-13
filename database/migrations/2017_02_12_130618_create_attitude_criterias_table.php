@@ -14,6 +14,7 @@ class CreateAttitudeCriteriasTable extends Migration
     {
         Schema::create('attitude_criterias', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('criteria');
             $table->timestamps();
         });
     }

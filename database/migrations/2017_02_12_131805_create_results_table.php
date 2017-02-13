@@ -14,6 +14,10 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('student_id');
+            $table->foreign('student_id')->references('id')->on('User');
+            $table->decimal('progress_point',3,1);
+            $table->decimal('exam_point',3,1);
             $table->timestamps();
         });
     }

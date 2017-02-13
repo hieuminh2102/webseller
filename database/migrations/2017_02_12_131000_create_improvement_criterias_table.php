@@ -14,6 +14,7 @@ class CreateImprovementCriteriasTable extends Migration
     {
         Schema::create('improvement_criterias', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('criteria');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ class CreateTechnicalLevelCriteriasTable extends Migration
     {
         Schema::create('technical_level_criterias', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('criteria');
             $table->timestamps();
         });
     }

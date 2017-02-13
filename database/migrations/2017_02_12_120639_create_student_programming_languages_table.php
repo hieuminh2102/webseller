@@ -14,8 +14,10 @@ class CreateStudentProgrammingLanguagesTable extends Migration
     {
         Schema::create('student_programming_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studentId');
-            $table->integer('programmingLanguageId');
+            $table->integer('student_id');
+            $table->foreign('student_id')->references('id')->on('User');
+            $table->integer('language_id');
+            $table->foreign('language_id')->references('id')->on('programmingLanguage');
             $table->smallInteger('level');
 
             $table->timestamps();
