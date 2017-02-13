@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttitudeCriteriasTable extends Migration
+class CreateImprovementCriteriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateAttitudeCriteriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('attitude_criterias', function (Blueprint $table) {
+        Schema::create('improvement_criterias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('criteria');
+            $table->string('criteria')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateAttitudeCriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attitude_criterias');
+        Schema::drop('improvement_criterias');
     }
 }

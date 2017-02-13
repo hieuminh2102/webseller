@@ -14,11 +14,11 @@ class CreateTaskFormsTable extends Migration
     {
         Schema::create('task_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
-            $table->foreign('student_id')->references('id')->on('User');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
             $table->string('content');
             $table->string('output_requirement');
-            $table->integer('completion',3);
+            $table->integer('completion');
             $table->timestamps();
         });
     }

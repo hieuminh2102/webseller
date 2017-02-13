@@ -14,15 +14,19 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
-            $table->foreign('student_id')->references('id')->on('User');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
             $table->string('class',10);
-            $table->boolean('is_male');
-            $table->boolean('have_laptop');
+            $table->boolean('is_male')->default(true);
+            $table->boolean('have_laptop')->default(true);
             $table->string('address');
             $table->string('phone',18);
             $table->timestamps();
         });
+
+
+
+
     }
 
     /**

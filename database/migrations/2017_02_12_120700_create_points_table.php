@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeneralAppreciationsTable extends Migration
+class CreatePointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateGeneralAppreciationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('general_appreciations', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('point');
+            $table->char('point')->unique();
             $table->string('description');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateGeneralAppreciationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('general_appreciations');
+        Schema::drop('points');
     }
 }

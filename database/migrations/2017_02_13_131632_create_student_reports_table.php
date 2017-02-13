@@ -14,14 +14,14 @@ class CreateStudentReportsTable extends Migration
     {
         Schema::create('student_reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
-            $table->foreign('student_id')->references('id')->on('User');
-            $table->integer('company_id');
-            $table->foreign('company_id')->references('id')->on('company');
-            $table->integer('season');
-            $table->foreign('season')->references('id')->on('season');
-            $table->integer('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teacher');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->integer('season')->unsigned();
+            $table->foreign('season')->references('id')->on('seasons');
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('users');
             $table->string('purpose',100);
             $table->string('job_content');
             $table->string('result');

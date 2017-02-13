@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSeasonsTable extends Migration
+class CreateGeneralAppreciationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateSeasonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seasons', function (Blueprint $table) {
+        Schema::create('general_appreciations', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->boolean('is_open');
+            $table->string('point')->unique();
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateSeasonsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('seasons');
+        Schema::drop('general_appreciations');
     }
 }

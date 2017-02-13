@@ -14,7 +14,7 @@ class CreateTaskCriteriasTable extends Migration
     {
         Schema::create('task_criterias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('criteria');
+            $table->string('criteria')->unique();
             $table->timestamps();
         });
     }

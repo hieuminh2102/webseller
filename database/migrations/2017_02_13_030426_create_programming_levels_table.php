@@ -14,7 +14,7 @@ class CreateProgrammingLevelsTable extends Migration
     {
         Schema::create('programming_levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('level');
+            $table->string('level')->unique();
             $table->string('description',50);
             $table->timestamps();
         });

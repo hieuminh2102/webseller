@@ -14,12 +14,12 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
-            $table->foreign('student_id')->references('id')->on('User');
-            $table->integer('criteria_id');
-            $table->foreign('criteria_id')->references('id')->on('taskCriteria');
-            $table->integer('point_id');
-            $table->foreign('point_id')->references('id')->on('point');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->integer('criteria_id')->unsigned();
+            $table->foreign('criteria_id')->references('id')->on('task_criterias');
+            $table->integer('point_id')->unsigned();
+            $table->foreign('point_id')->references('id')->on('points');
             $table->string('comment',100);
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class CreateEnglishCertificatesTable extends Migration
     {
         Schema::create('english_certificates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('certificate');
+            $table->string('certificate')->unique();
             $table->timestamps();
         });
     }
