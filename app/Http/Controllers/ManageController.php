@@ -13,6 +13,10 @@ class ManageController extends Controller
 		$this->middleware('auth');
 	}
 
+	public function anyIndex(){
+		dd('index');
+	}
+
 	public function anySetItem(){
 		$form = \DataForm::create();
 		$form->text('title','Title'); 
