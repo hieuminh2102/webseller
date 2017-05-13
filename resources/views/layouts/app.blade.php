@@ -27,10 +27,7 @@
             background: #42b2b8;
         }
         #app-layout{
-            background-image: url(images/background.jpg);
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: #cce6e8;
         }
     </style>
 </head>
