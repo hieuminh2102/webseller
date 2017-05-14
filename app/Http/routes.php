@@ -17,4 +17,5 @@ Route::auth();
 
 Route::controllers([
 	'manage-item' => 'ItemController',
+	'user-setting' => 'UserController',
 	]);

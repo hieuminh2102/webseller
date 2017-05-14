@@ -29,6 +29,12 @@
         #app-layout{
             background-color: #cce6e8;
         }
+        .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover,.dropdown-menu{
+            background: gray;
+        }
+        .dropdown-menu li a{
+            color: white;
+        }
     </style>
 </head>
 <body id="app-layout">

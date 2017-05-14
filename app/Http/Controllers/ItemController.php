@@ -22,7 +22,7 @@ class ItemController extends Controller
 
     	$form = \DataForm::create();
     	$form->add('name', 'Tên chậu cây', 'text')->rule('required|max:20');
-    	$form->add('quatity', 'Số lượng', 'text')->rule('required');
+    	$form->add('quatity', 'Số lượng', 'number')->rule('required');
     	$form->add('cost', 'Giá', 'text')->rule('required');
     	$form->add('id_category', 'Category', 'select')->options($category);
     	$form->add('id_size', 'Size', 'select')->options($size);
