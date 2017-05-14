@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('homepage.welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
-#  /app/Http/rapyd.php
-Route::controller('rapyd-demo','\Zofe\Rapyd\Demo\DemoController');
+Route::controllers([
+	'manage-item' => 'ItemController',
+	]);

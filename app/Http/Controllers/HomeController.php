@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $new_items = \App\Item::getNewItem();
+        return view('homepage.welcome', compact('new_items'));
     }
 }
