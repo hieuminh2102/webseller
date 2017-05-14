@@ -35,58 +35,23 @@
 	</div>
 	<div id="item-{{$type}}" class="collapse in col-md-12" style="background: white; padding: 10px 0px">
 		<ul>
+			@foreach($items as $item)
 			<li>
 				<div class="item">
-					<img src="/images/kitchen_adventurer_caramel.jpg" height="150" width="150"/>
+					<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="150" width="150"/>
 					<div style="text-align: center;">
 						<div style="background: orange; width: 100%">
-							<b style="color: white;">Cây Gì Đố Biết</b>
+							<b style="color: white;">{{$item->name}}</b>
 						</div>
-						<input type="button" class="btn btn-success view-item" value="Xem"/>
-						<input type="button" class="btn btn-info buy-item" value="Mua"/>
-					</div>
-				</div>
-				<div class="item">
-					<img src="/images/kitchen_adventurer_caramel.jpg" height="150" width="150"/>
-					<div style="text-align: center;">
 						<div style="background: orange; width: 100%">
-							<b style="color: white;">Cây Gì Đố Biết</b>
-						</div>
-						<input type="button" class="btn btn-success view-item" value="Xem"/>
-						<input type="button" class="btn btn-info buy-item" value="Mua"/>
-					</div>
-				</div>
-				<div class="item">
-					<img src="/images/kitchen_adventurer_caramel.jpg" height="150" width="150"/>
-					<div style="text-align: center;">
-						<div style="background: orange; width: 100%">
-							<b style="color: white;">Cây Gì Đố Biết</b>
-						</div>
-						<input type="button" class="btn btn-success view-item" value="Xem"/>
-						<input type="button" class="btn btn-info buy-item" value="Mua"/>
-					</div>
-				</div>
-				<div class="item">
-					<img src="/images/kitchen_adventurer_caramel.jpg" height="150" width="150"/>
-					<div style="text-align: center;">
-						<div style="background: orange; width: 100%">
-							<b style="color: white;">Cây Gì Đố Biết</b>
-						</div>
-						<input type="button" class="btn btn-success view-item" value="Xem"/>
-						<input type="button" class="btn btn-info buy-item" value="Mua"/>
-					</div>
-				</div>
-				<div class="item">
-					<img src="/images/kitchen_adventurer_caramel.jpg" height="150" width="150"/>
-					<div style="text-align: center;">
-						<div style="background: orange; width: 100%">
-							<b style="color: white;">Cây Gì Đố Biết</b>
+							<b style="color: white;">{{$item->cost}} VND</b>
 						</div>
 						<input type="button" class="btn btn-success view-item" value="Xem"/>
 						<input type="button" class="btn btn-info buy-item" value="Mua"/>
 					</div>
 				</div>
 			</li>
+			@endforeach
 		</ul>
 	</div>
 </div>

@@ -31,22 +31,10 @@
             </div>
             <!--End Ads-->
 
-            <!--Menu-->
-            <div class="main-menu">
-                <ul>
-                    <li><a href="#" style="padding:0px 15px">Cây Bán Chạy</a>
-                    </li>
-                    <li><a href="#">Cây Mới Về</a>
-                    </li>
-                    <li><a href="#">Cây Giảm giá</a>
-                    </li>
-                </ul>
-            </div>
-            <!--End menu-->
-            <div class="content" style="margin-top:20px; background: gray">
-                @include('homepage.item-homepage', ["title" => "Bán chạy", "type"=>"hot"])
-                @include('homepage.item-homepage', ["title" => "Mới về", "type"=>"new"])
-                @include('homepage.item-homepage', ["title" => "Sales", "type"=>"sale"])
+            <div class="content" style="margin-top:50px; background: gray">
+                @include('homepage.item-homepage', ["title" => "Bán chạy", "type"=>"hot", "items" => $new_items])
+                @include('homepage.item-homepage', ["title" => "Mới về", "type"=>"new", "items" => $new_items])
+                @include('homepage.item-homepage', ["title" => "Sales", "type"=>"sale", "items" => $new_items])
             </div>
         </div>
     </div>
