@@ -23,7 +23,7 @@ class ItemController extends Controller
     	$form = \DataForm::create();
     	$form->add('name', 'Tên chậu cây', 'text')->rule('required|max:20');
     	$form->add('quatity', 'Số lượng', 'number')->rule('required');
-    	$form->add('cost', 'Giá', 'text')->rule('required');
+    	$form->add('cost', 'Giá', 'text')->rule('required')->attributes(['data-v-max'=>'9999', 'data-v-min'=>'0']);
     	$form->add('id_category', 'Category', 'select')->options($category);
     	$form->add('id_size', 'Size', 'select')->options($size);
     	$form->add('photo','Photo', 'image', false, true)
@@ -36,7 +36,7 @@ class ItemController extends Controller
     		$item = new \App\Item();
     		$item->name = $input['name'];
     		$item->quatity = $input['quatity'];
-    		$item->cost = $input['cost'];
+    		$item->cost = str_replace(['.','$'], '', $input['cost']);
     		$item->id_category = $input['id_category'];
     		$item->id_size = $input['id_size'];
 

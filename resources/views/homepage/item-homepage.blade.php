@@ -65,15 +65,20 @@
 <script type="text/javascript" src="/js/toastr.min.js"></script>
 <script>
 	$('.buy-item').click(function(event){
+		var _this = $(this);
 		event.stopImmediatePropagation();
 		$.ajax({
 			url: '/cart-setting/add-cart/' + $(this).attr('id'),
 			type: "GET",
 			success : function(result){
+				_this.addClass('btn-warning');
+				_this.removeClass('btn-info');
+				_this.attr('disabled', 'disabled');
+				_this.attr('value', 'Đã mua');
 				toastr.success('Sản phẩm của bạn đã được thêm vào giỏ hàng!', '');
 			},
 			error : function(){
-				toastr.error('Có lỗi xảy ra!', '');
+				toastr.error('Bạn cần đăng nhập để mua hàng!', '');
 			}
 		});
 		

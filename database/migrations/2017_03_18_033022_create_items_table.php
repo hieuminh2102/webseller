@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('quatity');
-            $table->decimal('cost',10);
+            $table->string('cost');
             $table->integer('id_category')->unsigned();
             $table->foreign('id_category')->references('id')->on('categories');
             $table->integer('id_size')->unsigned();
