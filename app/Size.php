@@ -10,4 +10,9 @@ class Size extends Model
     	$source = \App\Size::lists('size', 'id');
     	return $source;
     }
+
+    public static function getSizeNameByID($id){
+    	$source = \App\Size::find($id);
+    	return $source->size;
+    }
 }

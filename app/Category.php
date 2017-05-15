@@ -10,4 +10,9 @@ class Category extends Model
     	$source = \App\Category::lists('name', 'id');
     	return $source;
     }
+
+    public static function getCateNameByID($id){
+    	$source = \App\Category::find($id);
+    	return $source->name;
+    }
 }

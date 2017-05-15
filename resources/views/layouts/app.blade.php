@@ -66,9 +66,9 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Cây Bán Chạy</a></li>
-                            <li><a href="#">Cây Mới Về</a></li>
-                            <li><a href="#">Cây Giảm Giá</a></li>
+                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Cây Bán Chạy</a></li>
+                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Cây Mới Về</a></li>
+                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Cây Giảm Giá</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -86,6 +86,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/cart-setting/view-cart') }}"><i class="fa fa-btn fa-shopping-cart"></i>Cart</a></li>
+                                <li><a href="{{ url('/user-setting/add-information') }}"><i class="fa fa-btn fa-user"></i>Add Information</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
