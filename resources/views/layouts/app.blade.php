@@ -29,6 +29,12 @@
         #app-layout{
             background-color: #cce6e8;
         }
+        .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover,.dropdown-menu{
+            background: gray;
+        }
+        .dropdown-menu li a{
+            color: white;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -46,7 +52,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}" style="color:white;">
-                    Cây Cảnh
+                    Chậu Cây Cảnh
                 </a>
             </div>
 
@@ -56,15 +62,24 @@
                     <!-- Authentication Links -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">
-                        Loại Cây <span class="caret"></span>
+                        Loại Chậu Cây <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Cây Bán Chạy</a></li>
-                            <li><a href="#">Cây Mới Về</a></li>
-                            <li><a href="#">Cây Giảm Giá</a></li>
+                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Chậu Cây Bán Chạy</a></li>
+                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Chậu Cây Mới Về</a></li>
                         </ul>
                     </li>
+                    @if (Auth::guest())
+                    @else
+                        @if(\Auth::user()->id_user_type == 1 || \Auth::user()->id_user_type == 2)
+                            <li>
+                                <a href="/manage-item/create-item" style="color:white;">
+                                    Đăng chậu cây
+                                </a>
+                            </li>
+                        @endif
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -80,6 +95,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/cart-setting/view-cart') }}"><i class="fa fa-btn fa-shopping-cart"></i>Cart</a></li>
+                                <li><a href="{{ url('/user-setting/add-information') }}"><i class="fa fa-btn fa-user"></i>Add Information</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+
 
 Route::auth();
 
+Route::get('/', 'HomeController@index');
 Route::controllers([
 	'manage-item' => 'ItemController',
+	'user-setting' => 'UserController',
+	'cart-setting' => 'CartController',
 	]);

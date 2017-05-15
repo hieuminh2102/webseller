@@ -34,7 +34,6 @@
             <div class="content" style="margin-top:50px; background: gray">
                 @include('homepage.item-homepage', ["title" => "Bán chạy", "type"=>"hot", "items" => $new_items])
                 @include('homepage.item-homepage', ["title" => "Mới về", "type"=>"new", "items" => $new_items])
-                @include('homepage.item-homepage', ["title" => "Sales", "type"=>"sale", "items" => $new_items])
             </div>
         </div>
     </div>

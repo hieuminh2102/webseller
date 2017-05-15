@@ -14,13 +14,9 @@
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/js/autoNumeric.js"></script>
-<script type="text/javascript">
-        $("#cost").autoNumeric('init', {
-            aSep: '.',
-            aDec: ',',
-            vMax: '9999999999',
-            aSign: '$'});
+<script src="/js/jquery.numeric.js"></script>
+<script>
+    $("#phone").numeric();
 </script>
 @endif
 @endsection

@@ -26,6 +26,7 @@
 		box-shadow: 0 3px 14px 2px rgba(0,0,0,.25);
 	}
 </style>
+<link href="/css/toastr.min.css" rel="stylesheet">
 <div style="width: 100%;">
 	<div style="background: gray;">
 		<label>{{$title}}</label>
@@ -46,8 +47,12 @@
 						<div style="background: orange; width: 100%">
 							<b style="color: white;">{{$item->cost}} VND</b>
 						</div>
-						<input type="button" class="btn btn-success view-item" value="Xem"/>
-						<input type="button" class="btn btn-info buy-item" value="Mua"/>
+						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" value="Xem"/>
+						@if(\App\Cart::checkItemInCart($item->id))
+						<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã mua"/>
+						@else
+						<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Mua"/>
+						@endif
 					</div>
 				</div>
 			</li>
@@ -55,3 +60,27 @@
 		</ul>
 	</div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/toastr.min.js"></script>
+<script>
+	$('.buy-item').click(function(event){
+		var _this = $(this);
+		event.stopImmediatePropagation();
+		$.ajax({
+			url: '/cart-setting/add-cart/' + $(this).attr('id'),
+			type: "GET",
+			success : function(result){
+				_this.addClass('btn-warning');
+				_this.removeClass('btn-info');
+				_this.attr('disabled', 'disabled');
+				_this.attr('value', 'Đã mua');
+				toastr.success('Sản phẩm của bạn đã được thêm vào giỏ hàng!', '');
+			},
+			error : function(){
+				toastr.error('Bạn cần đăng nhập để mua hàng!', '');
+			}
+		});
+		
+	})
+</script>
