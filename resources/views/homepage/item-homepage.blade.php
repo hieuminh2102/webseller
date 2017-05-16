@@ -25,6 +25,15 @@
 		opacity: 0.8;
 		box-shadow: 0 3px 14px 2px rgba(0,0,0,.25);
 	}
+	.modal-dialog{
+		width: 800px;
+	}
+	.modal-body{
+		height: 350px;
+	}
+	.item-data{
+		font-size: 18px;
+	}
 </style>
 <link href="/css/toastr.min.css" rel="stylesheet">
 <div style="width: 100%;">
@@ -38,7 +47,7 @@
 		<ul>
 			@foreach($items as $item)
 			<li>
-				<div class="item">
+				<div class="item" data-toggle="modal" data-target="#myModal{{$item->id}}">
 					<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="150" width="150"/>
 					<div style="text-align: center;">
 						<div style="background: orange; width: 100%">
@@ -47,12 +56,46 @@
 						<div style="background: orange; width: 100%">
 							<b style="color: white;">{{$item->cost}} VND</b>
 						</div>
-						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" value="Xem"/>
+						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" data-toggle="modal" data-target="#myModal{{$item->id}}" value="Xem"/>
 						@if(\App\Cart::checkItemInCart($item->id))
 						<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã mua"/>
 						@else
 						<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Mua"/>
 						@endif
+					</div>
+				</div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="myModal{{$item->id}}" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h3 class="modal-title"><b>{{$item->name}}</b></h3>
+							</div>
+							<div class="modal-body">
+								<div class="col-md-5">
+								<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="300" width="300"/>
+								</div>
+								<div class="col-md-7 item-data">
+									<p>Giá sản phẩm: {{$item->cost}} VND</p>
+									<p>Loại: {{\App\Category::getCateNameByID($item->id_category)}}</p>
+									<p>Kích cỡ: {{\App\Size::getSizeNameByID($item->id_size)}}</p>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<input id="{{$item->id}}" type="button" class="btn btn-success view-item" data-toggle="modal" data-target="#myModal{{$item->id}}" value="Xem"/>
+								@if(\App\Cart::checkItemInCart($item->id))
+								<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã mua"/>
+								@else
+								<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Mua"/>
+								@endif
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</li>

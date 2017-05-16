@@ -8,11 +8,6 @@ use App\Http\Requests;
 
 class ItemController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function anyCreateItem(){
     	if(\Auth::user()->id_user_type != 1 && \Auth::user()->id_user_type != 2){
     		return redirect('/');
