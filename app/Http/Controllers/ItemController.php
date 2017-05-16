@@ -49,6 +49,27 @@ class ItemController extends Controller
     	return $form->view('item.create-item', compact('form'));
     }
 
+    public function anyItemSearch(){
+        $request = \Request::input();
+
+        $items = [];
+        $links = "";
+        if(empty($request)){
+            $items = \App\Item::getAllItem();
+            $links = $items->render();
+        }
+        else if(!empty($request['category'])){
+            $items = \App\Item::getCategoryItem($request['category']);
+            $links = $items->render();
+        }
+        else if(!empty($request['size'])){
+            $items = \App\Item::getSizeItem($request['size']);
+            $links = $items->render();
+        }
+        $count_type = \App\Item::countTypeSearch();
+        return view('item.search_item', compact('items', 'links', 'count_type'));
+    }
+
     public function generateRandomString($length = 10) {
     	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     	$charactersLength = strlen($characters);

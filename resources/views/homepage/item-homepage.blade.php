@@ -56,11 +56,11 @@
 						<div style="background: orange; width: 100%">
 							<b style="color: white;">{{$item->cost}} VND</b>
 						</div>
-						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" data-toggle="modal" data-target="#myModal{{$item->id}}" value="Xem"/>
+						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" value="Xem"/>
 						@if(\App\Cart::checkItemInCart($item->id))
-						<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã mua"/>
+						<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã thêm"/>
 						@else
-						<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Mua"/>
+						<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Thêm"/>
 						@endif
 					</div>
 				</div>
@@ -87,11 +87,11 @@
 								
 							</div>
 							<div class="modal-footer">
-								<input id="{{$item->id}}" type="button" class="btn btn-success view-item" data-toggle="modal" data-target="#myModal{{$item->id}}" value="Xem"/>
+								<input id="{{$item->id}}" type="button" class="btn btn-success view-item" data-toggle="modal" data-target="#myModal{{$item->id}}" value="Close"/>
 								@if(\App\Cart::checkItemInCart($item->id))
-								<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã mua"/>
+								<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã thêm vào giỏ"/>
 								@else
-								<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Mua"/>
+								<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Thêm vào giỏ"/>
 								@endif
 							</div>
 						</div>
@@ -114,14 +114,19 @@
 			url: '/cart-setting/add-cart/' + $(this).attr('id'),
 			type: "GET",
 			success : function(result){
-				_this.addClass('btn-warning');
-				_this.removeClass('btn-info');
-				_this.attr('disabled', 'disabled');
-				_this.attr('value', 'Đã mua');
-				toastr.success('Sản phẩm của bạn đã được thêm vào giỏ hàng!', '');
+				if(result == "Success"){
+					_this.addClass('btn-warning');
+					_this.removeClass('btn-info');
+					_this.attr('disabled', 'disabled');
+					_this.attr('value', 'Đã thêm');
+					toastr.success('Sản phẩm của bạn đã được thêm vào giỏ hàng!', 'Item added to cart');
+				}
+				else{
+					toastr.warning('Sản phẩm của bạn đã có trong giỏ hàng!', 'Item Existed');
+				}
 			},
 			error : function(){
-				toastr.error('Bạn cần đăng nhập để mua hàng!', '');
+				toastr.error('Bạn cần đăng nhập để mua hàng!', 'Login Require');
 			}
 		});
 		
