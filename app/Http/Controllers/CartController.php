@@ -23,11 +23,16 @@ class CartController extends Controller
     }
 
     public function anyAddCart($item_id){
-    	$cart = new \App\Cart();
-    	$cart->user_id = \Auth::id();
-    	$cart->item_id = $item_id;
-    	$cart->quatity = 1;
-    	$cart->save();
-    	return "Success";
+        $in_cart_item = \App\Cart::where('user_id', \Auth::id())
+                                    ->where('item_id', $item_id)->first();
+        if(!$in_cart_item){
+            $cart = new \App\Cart();
+            $cart->user_id = \Auth::id();
+            $cart->item_id = $item_id;
+            $cart->quatity = 1;
+            $cart->save();
+            return "Success";
+        }
+    	return "Exist";
     }
 }
