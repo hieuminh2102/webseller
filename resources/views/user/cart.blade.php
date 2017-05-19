@@ -66,9 +66,12 @@
 		margin-top: -3px;
 	}
 </style>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 @section('content')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/js/sweetalert.min.js"></script>
+
 <div class="container">
 	<div class="col-md-12" style="background: white;">
 		<div class="panel" style="border-bottom: 3px solid black; margin-bottom: 20px;">
@@ -89,7 +92,7 @@
 						Kích cỡ: {{\App\Size::getSizeNameByID($value->id_size)}}
 					</p>
 				</div>
-				<p style="float:left; margin-top: 60px"><span style="font-size: 16px;">Số lượng: </span><input type="text" value="{{$value->buy_quatity}}" class="quatity-{{$key}}"/>
+				<p style="float:left; margin-top: 60px"><span style="font-size: 16px;">Số lượng: </span><input id="{{$value->id}}" type="text" value="{{$value->buy_quatity}}" class="number-item quatity-{{$key}}"/>
 					<img class="buy-more" id="more-{{$key}}" src="/images/addcontent.png" height="16" width="16">
 					<img class="buy-less" id="less-{{$key}}" src="/images/removecontent.png" height="16" width="16">
 				</p>
@@ -129,7 +132,7 @@
 		<div class="col-md-12 btn-request">
 			<div class="col-md-offset-10">
 				<p >Tổng: <span class="sum-val"></span></p>
-				<a href="#" class="btn btn-info" style="float:right;">Đặt hàng</a>
+				<a href="#" class="btn btn-info order-item" style="float:right;">Đặt hàng</a>
 			</div>
 			
 		</div>
@@ -147,6 +150,36 @@
 			sum_val += parseInt($(e).text().replace(' VND', ''));
 		});
 		$('.sum-val').text(sum_val + ' VND');
+	}
+
+	$('.order-item').click(function(){
+		postInvoiceData();
+		swal({
+			title: "Đặt hàng thành công",
+			text: "Click OK để đi tới đơn vừa đặt",
+			type: "success",
+		},
+		function(isConfirm){
+			if (isConfirm) {
+				console.log('click OK');
+			}
+		});
+	});
+
+	function postInvoiceData(){
+		var id_with_number = "";
+		$.map($('.number-item'), function(e){
+			id_with_number += $(e).attr('id') + ',';
+			id_with_number += $(e).val() + '|';
+		});
+		console.log(id_with_number);
+		$.ajax({
+			url: '/cart-setting/order',
+			type: "POST",
+			data: { id_number: id_with_number},
+			success: function(){
+			}
+		});
 	}
 </script>
 @endsection

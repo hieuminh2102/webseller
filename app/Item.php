@@ -76,4 +76,21 @@ class Item extends Model
     	
     	return array_combine($type, $count);
     }
+
+    public static function getNameItemByID($id){
+        $item = \App\Item::find($id);
+
+        if($item){
+            return $item->name;
+        }
+        return "";
+    }
+
+    public static function getCostItemByID($id){
+        $item = \App\Item::find($id);
+        if($item){
+            return $item->cost;
+        }
+        return "";
+    }
 }
