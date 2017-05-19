@@ -16,6 +16,7 @@
 Route::auth();
 
 Route::get('/', 'HomeController@index');
+Route::any('/invoice/{id}', ['as' => 'id', 'uses' => 'InvoiceController@getInvoice']);
 Route::controllers([
 	'manage-item' => 'ItemController',
 	'user-setting' => 'UserController',

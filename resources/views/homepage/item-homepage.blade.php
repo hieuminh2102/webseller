@@ -18,7 +18,13 @@
 	.view-item,
 	.buy-item{
 		margin-top: 3px;
-		width: 49%;
+		width: 48%;
+	}
+	.view-item{
+		float: left;
+	}
+	.buy-item{
+		float: right;
 	}
 	.item:hover{
 		cursor: pointer;
