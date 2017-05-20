@@ -62,23 +62,36 @@
                     <!-- Authentication Links -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">
-                        Loại Chậu Cây <span class="caret"></span>
+                            Loại Chậu Cây <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Chậu Cây Bán Chạy</a></li>
-                            <li><a href="#"><i class="fa fa-btn fa-tree"></i>Chậu Cây Mới Về</a></li>
+                            <li>
+                                <a href="/manage-item/item-search">
+                                    <i class="fa fa-btn fa-tree"></i>Tất cả
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/manage-item/item-search?category=dat">
+                                    <i class="fa fa-btn fa-tree"></i>Chậu Cây Bán Chạy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/manage-item/item-search?size=large">
+                                    <i class="fa fa-btn fa-tree"></i>Chậu Cây Mới Về
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     @if (Auth::guest())
                     @else
-                        @if(\Auth::user()->id_user_type == 1 || \Auth::user()->id_user_type == 2)
-                            <li>
-                                <a href="/manage-item/create-item" style="color:white;">
-                                    Đăng chậu cây
-                                </a>
-                            </li>
-                        @endif
+                    @if(\Auth::user()->id_user_type == 1 || \Auth::user()->id_user_type == 2)
+                    <li>
+                        <a href="/manage-item/create-item" style="color:white;">
+                            Đăng chậu cây
+                        </a>
+                    </li>
+                    @endif
                     @endif
                 </ul>
 
@@ -86,20 +99,21 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}" style="color:white;">Login</a></li>
-                        <li><a href="{{ url('/register') }}" style="color:white;">Register</a></li>
+                    <li><a href="{{ url('/login') }}" style="color:white;">Login</a></li>
+                    <li><a href="{{ url('/register') }}" style="color:white;">Register</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white;">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/cart-setting/view-cart') }}"><i class="fa fa-btn fa-shopping-cart"></i>Cart</a></li>
-                                <li><a href="{{ url('/user-setting/add-information') }}"><i class="fa fa-btn fa-user"></i>Add Information</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/cart-setting/view-cart') }}"><i class="fa fa-btn fa-shopping-cart"></i>Cart</a></li>
+                            <li><a href="{{ url('/invoice-info/list-invoice') }}"><i class="fa fa-btn fa-shopping-cart"></i>Your Invoice</a></li>
+                            <li><a href="{{ url('/user-setting/add-information') }}"><i class="fa fa-btn fa-user"></i>Add Information</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </li>
                     @endif
                 </ul>
             </div>
@@ -112,16 +126,16 @@
         <!--footer start from here-->
         <link href="/css/footer.css" rel="stylesheet">
         <style >
-        .copyright { min-height:40px; background-color:#000000;}
-        .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
-        .footer {
-            margin-top: 30px;
-            position: absolute;
-            right: 0;
-            left: 0;
-            background-color: #efefef;
-            text-align: center;
-        }
+            .copyright { min-height:40px; background-color:#000000;}
+            .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
+            .footer {
+                margin-top: 30px;
+                position: absolute;
+                right: 0;
+                left: 0;
+                background-color: #efefef;
+                text-align: center;
+            }
         </style>
         <div class="footer">
             <footer style="background-image:url('/images/footersievn.png'); background-repeat:repeat-x;">

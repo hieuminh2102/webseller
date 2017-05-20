@@ -74,7 +74,7 @@
 
 <div class="container">
 	<div class="col-md-12" style="background: white;">
-		<div class="panel" style="border-bottom: 3px solid black; margin-bottom: 20px;">
+		<div class="panel" style="border-bottom: 3px solid rgba(0, 0, 0, 0.21); margin-bottom: 20px;">
 			<h3>Giỏ hàng</h3>
 		</div>
 		@foreach($item_in_cart as $key=>$value)
