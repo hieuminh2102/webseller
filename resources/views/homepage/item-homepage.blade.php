@@ -57,10 +57,10 @@
 					<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="150" width="150"/>
 					<div style="text-align: center;">
 						<div style="background: orange; width: 100%">
-							<b style="color: white;">{{$item->name}}</b>
+							<span style="color: white;">{{$item->name}}</span>
 						</div>
 						<div style="background: orange; width: 100%">
-							<b style="color: white;">{{$item->cost}} VND</b>
+							<span style="color: white;">{{$item->cost}} VND</span>
 						</div>
 						<input id="{{$item->id}}" type="button" class="btn btn-success view-item" value="Xem"/>
 						@if(\App\Cart::checkItemInCart($item->id))

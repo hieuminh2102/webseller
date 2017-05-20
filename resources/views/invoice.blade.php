@@ -37,12 +37,18 @@
         color: red;
         font-weight: bold;
     }
+    .invoice-item th{
+        background: #f2dede;
+    }
+    .invoice-item td{
+        background: #faebcc;
+    }
 </style>
 @section('content')
 <div class="container">
 <div class="invoice col-md-12">
-        <div class="col-md-12">
-            <h1>Hóa Đơn</h1>
+        <div class="panel" style="border-bottom: 3px solid rgba(0, 0, 0, 0.21); margin-bottom: 20px; text-align: center">
+            <h3>HÓA ĐƠN MUA HÀNG</h3>
         </div>
         <div class="col-md-12">
             <table class="invoice-info col-md-12">
