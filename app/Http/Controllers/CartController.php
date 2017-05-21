@@ -55,10 +55,12 @@ class CartController extends Controller
             }
         }
 
+        $shipper = \App\User::where('id_user_type', 4)->first();
+
         $invoice = new \App\Invoice();
         $invoice->id_customer = \Auth::id();
         $invoice->id_status = 1;
-        $invoice->id_shipper = 9;
+        $invoice->id_shipper = $shipper->id;
         $invoice->save();
 
         $newest_invoice = \App\Invoice::orderBy('created_at', 'desc')->first();
