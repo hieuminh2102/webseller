@@ -93,4 +93,13 @@ class Item extends Model
         }
         return "";
     }
+
+    public static function getQuatityItem($id){
+        $item = \App\Item::find($id);
+        if($item){
+            if($item->quatity != 0)
+                return $item->quatity;
+            return "<span style='color:red'>Hết hàng</span>";
+        }
+    }
 }

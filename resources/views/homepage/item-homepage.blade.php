@@ -66,7 +66,11 @@
 						@if(\App\Cart::checkItemInCart($item->id))
 						<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã thêm"/>
 						@else
+						@if($item->quatity == 0)
+						<input id="{{$item->id}}" type="button" class="btn btn-danger buy-item" disabled="disabled" value="Hết"/>
+						@else
 						<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Thêm"/>
+						@endif
 						@endif
 					</div>
 				</div>
@@ -83,12 +87,13 @@
 							</div>
 							<div class="modal-body">
 								<div class="col-md-5">
-								<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="300" width="300"/>
+									<img src="{{env('APP_URL')}}/uploads/{{$item->image_src}}" height="300" width="300"/>
 								</div>
 								<div class="col-md-7 item-data">
 									<p>Giá sản phẩm: {{$item->cost}} VND</p>
 									<p>Loại: {{\App\Category::getCateNameByID($item->id_category)}}</p>
 									<p>Kích cỡ: {{\App\Size::getSizeNameByID($item->id_size)}}</p>
+									<p>Số lượng còn lại: {!!\App\Item::getQuatityItem($item->id)!!}</p>
 								</div>
 								
 							</div>
@@ -97,7 +102,11 @@
 								@if(\App\Cart::checkItemInCart($item->id))
 								<input id="{{$item->id}}" type="button" class="btn btn-warning buy-item" disabled="disabled" value="Đã thêm vào giỏ"/>
 								@else
+								@if($item->quatity == 0)
+								<input id="{{$item->id}}" type="button" class="btn btn-danger buy-item" disabled="disabled" value="Hết hàng"/>
+								@else
 								<input id="{{$item->id}}" type="button" class="btn btn-info buy-item" value="Thêm vào giỏ"/>
+								@endif
 								@endif
 							</div>
 						</div>

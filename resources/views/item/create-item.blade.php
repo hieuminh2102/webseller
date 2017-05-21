@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style>
+    .btn-toolbar{
+        float: right;
+    }
+</style>
 @section('content')
 <div class="container">
     @if(\Session::has('message'))
@@ -10,7 +14,7 @@
         <a href="/" class="btn btn-info">Back</a> 
     </div>
     @else
-    <div class="col-md-offset-2 col-md-5">
+    <div class="col-md-offset-1 col-md-8">
         {!!$form!!}
     </div>
 </div>

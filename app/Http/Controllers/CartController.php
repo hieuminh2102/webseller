@@ -44,6 +44,16 @@ class CartController extends Controller
 
     public function anyOrder(){
         $id_with_number_item = \Request::input('id_number');
+        $item_in_carts = array_filter(explode('|', $id_with_number_item));
+        foreach($item_in_carts as $item){
+            $item_info = explode(',', $item);
+            $item = \App\Item::find($item_info[0]);
+            if($item->quatity < $item_info[1]){
+                $item_info_name = "Sản phẩm ". \App\Item::getNameItemByID($item_info[0]) . " không đủ số lượng, chỉ còn "
+                                . $item->quatity . " sản phẩm";
+                return $item_info_name;
+            }
+        }
 
         $invoice = new \App\Invoice();
         $invoice->id_customer = \Auth::id();
@@ -53,13 +63,14 @@ class CartController extends Controller
 
         $newest_invoice = \App\Invoice::orderBy('created_at', 'desc')->first();
 
-        $item_in_carts = array_filter(explode('|', $id_with_number_item));
+        
         foreach($item_in_carts as $item){
             $item_info = explode(',', $item);
             $new_row_item_invoice = new \App\ItemInvoice();
             $new_row_item_invoice->id_invoice = $newest_invoice->id;
             $new_row_item_invoice->id_item = $item_info[0];
             $new_row_item_invoice->quatity = $item_info[1];
+            $this->updateQuatityItem($item_info[0], $item_info[1]);
             $new_row_item_invoice->save();
         }
 
@@ -72,5 +83,15 @@ class CartController extends Controller
         foreach($item_in_cart as $item){
             $item->delete();
         }
+    }
+
+    public function updateQuatityItem($id_item, $buy_quatity){
+        $item = \App\Item::find($id_item);
+        if(!$item){
+            return "Item Not Found";
+        }
+        $item->quatity = $item->quatity - $buy_quatity;
+        $item->save();
+        return "Update Quatity Done";
     }
 }
