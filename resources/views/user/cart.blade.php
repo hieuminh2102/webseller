@@ -195,16 +195,6 @@
 
 	$('.order-item').click(function(){
 		postInvoiceData();
-		swal({
-			title: "Đặt hàng thành công",
-			text: "Click OK để xem hóa đơn",
-			type: "success",
-		},
-		function(isConfirm){
-			if (isConfirm) {
-				window.location.href = '/invoice-info/list-invoice';
-			}
-		});
 	});
 
 	function postInvoiceData(){
@@ -217,7 +207,26 @@
 			url: '/cart-setting/order',
 			type: "POST",
 			data: { id_number: id_with_number},
-			success: function(){
+			success: function(data){
+				if(data == "Success"){
+					swal({
+						title: "Đặt hàng thành công",
+						text: "Click OK để xem hóa đơn",
+						type: "success",
+					},
+					function(isConfirm){
+						if (isConfirm) {
+							window.location.href = '/invoice-info/list-invoice';
+						}
+					});
+				}
+				else{
+					swal({
+						title: "Error",
+						text: data,
+						type: "error",
+					});
+				}
 			}
 		});
 	}

@@ -12,16 +12,16 @@
                             <div class="flexslider">
                                 <ul class="slides">
                                     <li>
-                                        <img src="images/abc.jpg" />
+                                        <img src="images/slider-1.jpg" />
                                     </li>
                                     <li>
-                                        <img src="images/def.jpg" />
+                                        <img src="images/slider-2.jpg" />
                                     </li>
                                     <li>
-                                        <img src="images/abc.jpg" />
+                                        <img src="images/slider-3.jpg" />
                                     </li>
                                     <li>
-                                        <img src="images/def.jpg" />
+                                        <img src="images/slider-4.jpg" />
                                     </li>
                                 </ul>
                             </div>
