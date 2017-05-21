@@ -134,7 +134,6 @@
 				<p >Tổng: <span class="sum-val"></span></p>
 				<a href="#" class="btn btn-info order-item" style="float:right;">Đặt hàng</a>
 			</div>
-			
 		</div>
 	</div>
 </div>
@@ -217,6 +216,18 @@
 					function(isConfirm){
 						if (isConfirm) {
 							window.location.href = '/invoice-info/list-invoice';
+						}
+					});
+				}
+				else if(data == "Info Required"){
+					swal({
+						title: "Warning",
+						text: "Bạn cần nhập đủ thông tin trước",
+						type: "warning",
+					},
+					function(isConfirm){
+						if (isConfirm) {
+							window.location.href = '/user-setting/add-information';
 						}
 					});
 				}

@@ -54,6 +54,10 @@ class CartController extends Controller
                 return $item_info_name;
             }
         }
+        
+        if(!$this->checkUserInfo(\Auth::id())){
+            return "Info Required";
+        }
 
         $shipper = \App\User::where('id_user_type', 4)->first();
 
@@ -78,6 +82,14 @@ class CartController extends Controller
 
         $this->deleteCart();
         return "Success";
+    }
+
+    public function checkUserInfo($user_id){
+        $user = \App\User::find($user_id);
+        if(empty($user->address) || empty($user->phone)){
+            return false;
+        }
+        return true;
     }
 
     public function deleteCart(){
