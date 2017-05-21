@@ -32,6 +32,16 @@ class CartController extends Controller
     	return "Exist";
     }
 
+    public function getRemoveItem($id_item){
+        $item = \App\Cart::where('user_id', \Auth::id())
+                            ->where('item_id', $id_item)->first();
+        if($item){
+            $item->delete();
+            return "Success";
+        }
+        return "Fail";
+    }
+
     public function anyOrder(){
         $id_with_number_item = \Request::input('id_number');
 

@@ -17,7 +17,6 @@
 		margin: 0px 0px;
 		font-weight: bold;
 		font-size: 20px;
-		border-right: 1px solid rgba(43, 20, 20, 0.15);
 	}
 	p.item-data{
 		height: 150px;
@@ -67,6 +66,7 @@
 	}
 </style>
 <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+<link href="/css/toastr.min.css" rel="stylesheet">
 @section('content')
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -80,7 +80,7 @@
 		@foreach($item_in_cart as $key=>$value)
 		<div class="cart-item">
 			<div class="item-info">
-				<p class="priority">{{$key+1}}. </p>
+				<p id="{{$value->id}}" class="priority"><i class="fa fa-times" aria-hidden="true"></i></p>
 				<div>
 					<img class="item-img" src="{{env('APP_URL')}}/uploads/{{$value->image_src}}" height="150" width="150">
 					<p class="item-data">Tên: {{$value->name}}
@@ -139,9 +139,46 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="/js/toastr.min.js"></script>
 <script>
 	$(document).ready(function(){
 		sumVal();
+	});
+	toastr.options = {
+		"closeButton": true,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-left",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+
+	$('.priority').click(function(){
+		var _this = this;
+		$.ajax({
+			url: '/cart-setting/remove-item/' + $(this).attr('id'),
+			type: "GET",
+			success: function(data){
+				if(data=="Success"){
+					$(_this).parent().parent().remove();
+					sumVal();
+					toastr.success('Sản phẩm đã xóa', 'Remove Item');
+				}
+				else if(data=="Fail"){
+					toastr.error('Có lỗi xảy ra!', 'Error');
+				}
+			}
+		});
+		
 	});
 
 	function sumVal(){
@@ -149,6 +186,10 @@
 		$.map($('.calculate'), function(e){
 			sum_val += parseInt($(e).text().replace(' VND', ''));
 		});
+		if(sum_val == 0)
+			$('.order-item').css('display', 'none');
+		else
+			$('.order-item').css('display', 'block');
 		$('.sum-val').text(sum_val + ' VND');
 	}
 
@@ -156,12 +197,12 @@
 		postInvoiceData();
 		swal({
 			title: "Đặt hàng thành công",
-			text: "Click OK để đi tới đơn vừa đặt",
+			text: "Click OK để xem hóa đơn",
 			type: "success",
 		},
 		function(isConfirm){
 			if (isConfirm) {
-				console.log('click OK');
+				window.location.href = '/invoice-info/list-invoice';
 			}
 		});
 	});
@@ -172,7 +213,6 @@
 			id_with_number += $(e).attr('id') + ',';
 			id_with_number += $(e).val() + '|';
 		});
-		console.log(id_with_number);
 		$.ajax({
 			url: '/cart-setting/order',
 			type: "POST",

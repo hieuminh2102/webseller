@@ -52,6 +52,7 @@ class InvoiceController extends Controller
         $grid->add('{{"Hóa đơn số ". $id}}', 'Số hóa đơn')->link = '{{("/invoice-info/invoice/".$id)}}';
         $grid->add('{{\App\User::getUsernameByID($id_shipper)}}', 'Shipper');
         $grid->add('id_status', 'Trạng thái');
+        $grid->add('created_at', 'Ngày tạo');
         $grid->row(function ($row){
             switch ($row->cell('id_status')->value) {
                 case '1':
