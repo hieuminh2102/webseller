@@ -76,12 +76,12 @@
                             </li>
                             <li>
                                 <a href="/manage-item/item-search?category=dat">
-                                    <i class="fa fa-btn fa-tree"></i>Chậu Cây Bán Chạy
+                                    <i class="fa fa-btn fa-tree"></i>Theo Category
                                 </a>
                             </li>
                             <li>
                                 <a href="/manage-item/item-search?size=large">
-                                    <i class="fa fa-btn fa-tree"></i>Chậu Cây Mới Về
+                                    <i class="fa fa-btn fa-tree"></i>Theo Size
                                 </a>
                             </li>
                         </ul>
